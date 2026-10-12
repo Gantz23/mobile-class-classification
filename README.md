@@ -38,21 +38,33 @@ Overall Test Accuracy: **[e.g., 86.7%]**
 
 The Random Forest model identified the following specifications as the strongest drivers of price tier classification:
 
-| Rank | Feature | Importance Score | Business Takeaway |
-| :---: | :--- | :---: | :--- |
-| **1** | `ram` | ~[0.48 - 0.52] | By far the primary determinant of price tier. |
-| **2** | `battery_power` | ~[0.07 - 0.09] | Significant factor separating entry from premium models. |
-| **3** | `px_width` / `px_height` | ~[0.05 - 0.08] | Screen display resolution strongly correlates with tier. |
-| **4** | `int_memory` | ~[0.03 - 0.05] | Internal storage capacity provides moderate lift. |
-| **5** | `mobile_wt` | ~[0.03 - 0.04] | Weight and physical form factor have subtle influence. |
-
-*(Features like `touch_screen`, `wifi`, and `dual_sim` exhibited minimal impact on price differentiation across competitors).*
-
----
+| Rank | Feature | Description | Gini Importance |
+| :---: | :--- | :--- | :---: |
+| **1** | `ram` | Random Access Memory (MB) | **0.458** |
+| **2** | `battery_power` | Total energy stored by battery (mAh) | **0.074** |
+| **3** | `px_width` | Pixel resolution width | **0.059** |
+| **4** | `px_height` | Pixel resolution height | **0.058** |
+| **5** | `int_memory` | Internal Memory (GB) | **0.040** |
+| **6** | `mobile_wt` | Weight of mobile phone | **0.040** |
+| **7** | `pc` | Primary Camera megapixels | **0.031** |
+| **8** | `talk_time` | Longest battery run time on a call | **0.031** |
+| **9** | `clock_speed` | Microprocessor execution speed | **0.030** |
+| **10** | `sc_w` | Screen width (cm) | **0.030** |
+| **11** | `sc_h` | Screen height (cm) | **0.029** |
+| **12** | `fc` | Front Camera megapixels | **0.027** |
+| **13** | `m_dep` | Mobile depth (cm) | **0.025** |
+| **14** | `n_cores` | Number of processor cores | **0.024** |
+| **15** | `dual_sim` | Dual SIM support | **0.008** |
+| **16** | `wifi` | Wi-Fi connectivity | **0.007** |
+| **17** | `blue` | Bluetooth connectivity | **0.007** |
+| **18** | `touch_screen` | Touch screen presence | **0.007** |
+| **19** | `four_g` | 4G network capability | **0.007** |
+| **20** | `three_g` | 3G network capability | **0.006** |
 
 ## Conclusion
 
-- **Dominant Driver:** **RAM** is the single most critical specification influencing mobile pricing brackets in the market, accounting for roughly half of the model's total predictive weight.
-- **Secondary Tier Influencers:** **Battery capacity** and **display resolution** (`px_width`, `px_height`) serve as the secondary tier-defining specifications.
-- **Commodity Features:** Connectivity features such as 3G/4G, Bluetooth, Dual SIM, and Wi-Fi have become standard industry baselines and do not justify a higher price tier on their own.
-- **Actionable Recommendation for Bob:** When designing new product tiers, allocate the component budget primarily toward RAM and display quality to justify moving from a lower price bracket (0 or 1) to a premium bracket (2 or 3).
+- **Classification Precision:** The model demonstrates strong predictive performance at **86.67% accuracy**, showing particularly high separation power for extreme tiers (Class 0 at 0.94 F1-score and Class 3 at 0.92 F1-score).
+- **RAM is the Primary Deciding Factor:** With a Gini importance of **0.458**, `ram` accounts for nearly 46% of the total predictive power. Upgrading RAM is the single most effective way to justify a higher price bracket.
+- **Secondary Tier Drivers:** Battery capacity (`0.074`) and display resolution (`px_width` at `0.059` and `px_height` at `0.058`) are the subsequent major differentiators between tiers.
+- **Commoditized Baseline Features:** Connectivity features such as Dual SIM, Wi-Fi, Bluetooth, Touch Screen, 4G, and 3G each have less than a **0.008** importance score. These are industry standards expected by consumers and do not command a premium price on their own.
+- **Actionable Recommendation for Bob:** Focus production and supply chain budgets on maximizing **RAM**, followed by **battery size** and **screen resolution**, rather than investing heavily in commodity marketing features.
